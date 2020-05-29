@@ -9,16 +9,17 @@ namespace People
 {
     public partial class App : Application
     {
+        public static PersonRepository PersonRepo;
+
         string dbPath => FileAccessHelper.GetLocalFilePath("people.db3");
 
         public App()
         {
             InitializeComponent();
 
-            MainPage = new People.MainPage()
-            {
-                Text = dbPath,
-            };
+            PersonRepo = new PersonRepository(dbPath);
+
+            MainPage = new People.MainPage();
         }
 
         protected override void OnStart()
